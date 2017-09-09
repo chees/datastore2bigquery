@@ -9,7 +9,7 @@ GREEN=$(tput setaf 2)
 
 if [ "$#" == 0 ]; then
   echo "This script exports a Datastore kind to Cloud Storage, imports it into BigQuery and then deletes the Cloud Storage files."
-  echo "Usage  : $0 <PROJECT> <KIND> [BQDATASET]"
+  echo "Usage  : $0 PROJECT KIND [BQDATASET]"
   echo "Example: $0 code-cooking Food"
   exit 1
 fi
