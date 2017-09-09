@@ -4,7 +4,7 @@ This script exports a Datastore kind to Cloud Storage, imports it into BigQuery 
 
 Usage:
 
-    ./datastore2bigquery.sh <PROJECT> <KIND> [BQDATASET]`
+    ./datastore2bigquery.sh <PROJECT> <KIND> [BQDATASET]
 
 Example:
 
