@@ -1,14 +1,22 @@
 #!/bin/bash
 
-PROJECT=code-cooking
-KIND=Food
-BQDATASET=datastore
-
 # Abort on error:
 set -euo pipefail
 
 NC=$(tput sgr 0) # No Color
+RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
+
+if [ "$#" == 0 ]; then
+  echo "This script exports a Datastore kind to Cloud Storage, imports it into BigQuery and then deletes the Cloud Storage files."
+  echo "Usage  : $0 <PROJECT> <KIND> [BQDATASET]"
+  echo "Example: $0 code-cooking Food"
+  exit 1
+fi
+PROJECT=$1
+if [ -n "${2:-}" ]; then KIND=$2; else echo "${RED}Please also specify a KIND$NC"; exit 1; fi
+if [ -n "${3:-}" ]; then BQDATASET=$3; else BQDATASET=datastore; fi
+
 
 GCSPATH=gs://$PROJECT.appspot.com/datastore-$KIND-`date -u +"%Y-%m-%dT%H:%M:%SZ"`
 
