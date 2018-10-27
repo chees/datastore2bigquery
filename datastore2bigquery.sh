@@ -27,7 +27,7 @@ echo -e "${GREEN}Creating BigQuery dataset...$NC"
 bq mk -f $PROJECT:$BQDATASET
 
 echo -e "${GREEN}Loading export into BigQuery...$NC"
-bq load --source_format=DATASTORE_BACKUP $PROJECT:$BQDATASET.${KIND}_`date -u +"%Y%m%dT%H%M%SZ"` $GCSPATH/all_namespaces/kind_$KIND/all_namespaces_kind_$KIND.export_metadata
+bq load --project $PROJECT --source_format=DATASTORE_BACKUP $PROJECT:$BQDATASET.${KIND}_`date -u +"%Y%m%dT%H%M%SZ"` $GCSPATH/all_namespaces/kind_$KIND/all_namespaces_kind_$KIND.export_metadata
 
 echo -e "${GREEN}Deleting backup files from Cloud Storage...$NC"
 gsutil rm -r $GCSPATH
